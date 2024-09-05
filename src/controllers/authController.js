@@ -3,13 +3,14 @@ import { checkToken } from "../utils/checkIfAuthenticated";
 
 export const app = axios.create({
   baseURL: "https://api.hakiki.co",
-  headers: {
-    Authorization: checkToken(),
-  },
 });
 
 export const getUsers = async () => {
-  return await app.get("/users");
+  return await app.get("/users", {
+    headers: {
+      Authorization: checkToken(),
+    },
+  });
 };
 
 export const login = async (data) => {
