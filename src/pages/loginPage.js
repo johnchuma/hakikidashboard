@@ -20,6 +20,7 @@ const LoginPage = () => {
           login(data)
             .then((response) => {
               setLoading(false);
+              console.log(response.data);
               localStorage.setItem(
                 "hakiki-auth",
                 JSON.stringify(response.data.token)

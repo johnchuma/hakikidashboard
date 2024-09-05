@@ -2,7 +2,7 @@ import axios from "axios";
 import { checkToken } from "../utils/checkIfAuthenticated";
 
 export const app = axios.create({
-  baseURL: "http://104.194.157.251:5000",
+  baseURL: "https://api.hakiki.co",
   headers: {
     Authorization: checkToken(),
   },
