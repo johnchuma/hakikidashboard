@@ -34,8 +34,13 @@ const LoginPage = () => {
         }}
         className="bg-white p-10 shadow-lg  w-[27%] 2xl:w-[20%] rounded"
       >
-        <h1 className="font-bold text-2xl">Login to continue</h1>
-        <p className="text-muted ">Enter credentials below</p>
+        <div className="flex justify-center">
+          <img className="h-16" src="/logo.png" />
+        </div>
+        <h1 className="font-bold text-2xl text-center mt-2">
+          Login to continue
+        </h1>
+        <p className="text-muted text-center ">Enter credentials below</p>
 
         <div className="space-y-3 mt-8 text-sm">
           <div className=" flex flex-col space-y-1">
