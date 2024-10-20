@@ -1,7 +1,8 @@
-const CustomButton = ({ text, loading = false, className }) => {
+const CustomButton = ({ text, loading = false, className, onTap }) => {
   return (
     <button
       type="submit"
+      onClick={onTap}
       className={`py-2 text-sm  px-3 rounded hover:scale-105 transition-all duration-200 flex justify-center bg-primaryColor text-white ${className}`}
     >
       {loading == true ? (

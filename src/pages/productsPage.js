@@ -1,23 +1,33 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CustomButton from "../components/customButton";
 import Loader from "../components/loader";
 import { getUsers } from "../controllers/authController";
 import { getProductScans } from "../controllers/scansController";
-import { getProducts } from "../controllers/productsController";
+import { deleteProduct, getProducts } from "../controllers/productsController";
 import moment from "moment";
 import NoData from "../components/noData";
+import AddProduct from "../components/forms/addProduct";
+import { AppContext } from "../layouts/mainLayout";
+import toast from "react-hot-toast";
 
 const ProductsPage = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const { setShowDelete, setOnDelete } = useContext(AppContext);
+  const fetchProducts = async () => {
+    const response = await getProducts();
+    setLoading(false);
+    setData(response.data.body);
+  };
   useEffect(() => {
-    setLoading(true);
-    getProducts().then((response) => {
-      console.log(response.data.body);
-      setLoading(false);
-      setData(response.data.body);
-    });
+    console.log(
+      Math.floor(Math.random() * 1000000000000)
+        .toString()
+        .padStart(12, "0")
+    );
+    fetchProducts();
   }, []);
   return loading ? (
     <Loader />
@@ -25,7 +35,18 @@ const ProductsPage = () => {
     <div className="">
       <div className="flex justify-between items-center border-b border-muted border-opacity-40 pb-2">
         <h1 className="  text-2xl font-bold">Products</h1>
-        <CustomButton text={"Add Product"} />
+        {showCreateModal && (
+          <AddProduct
+            setShowCreateModal={setShowCreateModal}
+            fetchProducts={fetchProducts}
+          />
+        )}
+        <CustomButton
+          onTap={() => {
+            setShowCreateModal(true);
+          }}
+          text={"Add Product"}
+        />
       </div>
       <div className="bg-white p-8 rounded shadow-lg mt-4">
         {data.length == 0 ? (
@@ -80,6 +101,21 @@ const ProductsPage = () => {
                         </td>
                         <td className="text-sm py-3">
                           {moment(item.expireDate).format("yyy-MM-DD")}
+                        </td>
+                        <td
+                          onClick={() => {
+                            setShowDelete(true);
+                            setOnDelete(() => () => {
+                              deleteProduct(item.uuid).then((res) => {
+                                fetchProducts();
+                                toast.success("Deleted Successfully");
+                                setShowDelete(false);
+                              });
+                            });
+                          }}
+                          className="text-sm py-4 font-bold text-red-400 cursor-pointer"
+                        >
+                          Delete
                         </td>
                       </tr>
                     );

@@ -46,7 +46,7 @@ const ManufacturesPage = () => {
                   <th className="text-sm text-start text-muted">Created At</th>
                   <th className="text-sm text-start text-muted">Name</th>
                   <th className="text-sm text-start text-muted">Phone</th>
-                  <th className="text-sm text-start text-muted">Role</th>
+                  <th className="text-sm text-start text-muted">Email</th>
                   <th className="text-sm text-start text-muted">Location</th>
                 </tr>
               </thead>
@@ -62,9 +62,9 @@ const ManufacturesPage = () => {
                           {moment(item.createdAt).fromNow()}
                         </td>
                         <td className="text-sm py-4">{item.name}</td>
-                        <td className="text-sm py-4">{item.phone}</td>
-                        <td className="text-sm py-4">{item.role}</td>
-                        <td className="text-sm py-4">{item.address}</td>
+                        <td className="text-sm py-4">{item.User.phone}</td>
+                        <td className="text-sm py-4">{item.User.email}</td>
+                        <td className="text-sm py-4">{item.User.address}</td>
                       </tr>
                     );
                   })}
