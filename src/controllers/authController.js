@@ -2,7 +2,7 @@ import axios from "axios";
 import { checkToken } from "../utils/checkIfAuthenticated";
 
 export const app = axios.create({
-  baseURL: "http://100.25.177.93:5000",
+  baseURL: "http://100.25.177.83:5000",
 });
 
 export const getUsers = async () => {
