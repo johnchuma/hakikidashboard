@@ -14,7 +14,7 @@ const AddUser = ({ fetchUsers, setShowCreateModal }) => {
         onSubmit={(e) => {
           e.preventDefault();
           setUploading(true);
-          const payload = {
+          let payload = {
             role: e.target.role.value,
             phone: e.target.phone.value,
             name: e.target.name.value,
@@ -64,6 +64,7 @@ const AddUser = ({ fetchUsers, setShowCreateModal }) => {
             >
               <option value="supplier">Manufacture</option>
               <option value="distributor">Distributor</option>
+              <option value="admin">Admin</option>
             </select>
           </div>
           <div className="flex flex-col space-y-1">
