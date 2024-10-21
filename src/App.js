@@ -11,6 +11,7 @@ import ManufacturesPage from "./pages/manufacturesPage";
 import DistributersPage from "./pages/distributersPage";
 import LoginPage from "./pages/loginPage";
 import { Toaster } from "react-hot-toast";
+import QRCode from "./pages/qrCode";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route path="/" element={<OverviewPage />} />
             <Route path="/users" element={<UsersPage />} />
+            <Route path="/qrcode" element={<QRCode />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/retailers" element={<RetailersPage />} />
             <Route path="/scans" element={<ScansPage />} />

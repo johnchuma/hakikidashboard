@@ -9,11 +9,13 @@ import NoData from "../components/noData";
 import AddProduct from "../components/forms/addProduct";
 import { AppContext } from "../layouts/mainLayout";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
+  const navigate = useNavigate();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const { setShowDelete, setOnDelete } = useContext(AppContext);
   const fetchProducts = async () => {
@@ -104,10 +106,16 @@ const ProductsPage = () => {
                         </td>
                         <td className="text-sm py-3">
                           <button
-                            className="hover:bg-primaryColor transition-all"
-                            onClick={() => window.open(item.qrCode, "__blank")}
+                            className="hover:text-primaryColor font-semibold transition-all"
+                            onClick={() => {
+                              navigator.clipboard
+                                .writeText(item.qrCode)
+                                .then((res) => {
+                                  toast.success("Copied successfully");
+                                });
+                            }}
                           >
-                            QR Code
+                            Copy QR Code
                           </button>
                         </td>
                         <td
