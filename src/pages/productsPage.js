@@ -102,6 +102,14 @@ const ProductsPage = () => {
                         <td className="text-sm py-3">
                           {moment(item.expireDate).format("yyy-MM-DD")}
                         </td>
+                        <td className="text-sm py-3">
+                          <button
+                            className="hover:bg-primaryColor transition-all"
+                            onClick={() => window.open(item.qrCode, "__blank")}
+                          >
+                            QR Code
+                          </button>
+                        </td>
                         <td
                           onClick={() => {
                             setShowDelete(true);
