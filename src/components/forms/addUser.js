@@ -85,23 +85,27 @@ const AddUser = ({ fetchUsers, setShowCreateModal }) => {
               placeholder="Enter phone number"
             />
           </div>
-          {selectedRole == "supplier" ? (
-            <div className="flex flex-col space-y-1">
-              <label>Company Name</label>
-              <input
-                name="companyName"
-                className="form-style"
-                placeholder="Enter Company name"
-              />
-            </div>
-          ) : (
-            <div className="flex flex-col space-y-1">
-              <label>Business Name</label>
-              <input
-                name="businessName"
-                className="form-style"
-                placeholder="Enter Business name"
-              />
+          {selectedRole != "admin" && (
+            <div>
+              {selectedRole == "supplier" ? (
+                <div className="flex flex-col space-y-1">
+                  <label>Company Name</label>
+                  <input
+                    name="companyName"
+                    className="form-style"
+                    placeholder="Enter Company name"
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col space-y-1">
+                  <label>Business Name</label>
+                  <input
+                    name="businessName"
+                    className="form-style"
+                    placeholder="Enter Business name"
+                  />
+                </div>
+              )}
             </div>
           )}
           <div className="flex flex-col space-y-1">
